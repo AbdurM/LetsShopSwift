@@ -4,18 +4,6 @@ class ItemStore {
     
     var allItems = [Item]()
     
-    
-    init()
-    {
-        
-        //adding 5 random items to all items array. This needs to be removed in the future
-        for _ in 0..<5{
-            createItem()
-        }
-    }
-    
-    
-    
     //@discardableResult annotation means that the caller of this function is free to ignore the result of calling this function
     @discardableResult  func createItem() -> Item
     {
@@ -27,5 +15,29 @@ class ItemStore {
         
         return newItem
         
+    }
+    
+    
+    func removeItem(_ item: Item)
+    {
+        if let index = allItems.firstIndex(of: item)
+        {
+            allItems.remove(at: index)
+        }
+    }
+    
+    
+    func moveItem(from fromIndex: Int,to toIndex: Int )
+    {
+        if fromIndex == toIndex
+        {
+            return
+        }
+        
+        let movedItem = allItems[fromIndex]
+        
+        allItems.remove(at: fromIndex)
+        
+        allItems.insert(movedItem, at: toIndex)
     }
 }
