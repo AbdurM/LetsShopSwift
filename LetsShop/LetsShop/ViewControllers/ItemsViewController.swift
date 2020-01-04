@@ -71,9 +71,31 @@ class ItemsViewController: UITableViewController
         {
             let item = itemStore.allItems[indexPath.row]
             
-            itemStore.removeItem(item)
+            //show an alert to confirm deletion
             
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            let title = "Delete \(item.name)"
+            
+            let message = "Are you sure you want to delete this item?"
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
+            
+            let deleteAction = UIAlertAction(title:"Delete", style: .destructive){
+                //remove item only after recieving the confirmation from the user
+                (action) -> Void in
+                self.itemStore.removeItem(item)
+                           
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }
+            //add actions
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            
+            //present the alertController
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
     
