@@ -2,9 +2,10 @@ import UIKit
 
 class ItemsViewController: UITableViewController
 {
+    //region Injections
     var itemStore: ItemStore!
     
-    //region @IBAction
+    //region Actions
     @IBAction func addNewItem(_ sender: UIButton)
     {
         let newItem = itemStore.createItem()
@@ -14,6 +15,7 @@ class ItemsViewController: UITableViewController
             let indexPath = IndexPath(row: index, section: 0)
             
             tableView.insertRows(at: [indexPath], with: .automatic)
+            
         }
     }
     
@@ -30,18 +32,20 @@ class ItemsViewController: UITableViewController
             setEditing(true, animated: true)
         }
     }
-    //End region @IBAction
+   
     
-    //region UIViewController lifecycle callbacks
+    //region view lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = UITableView.automaticDimension
+        
+        tableView.estimatedRowHeight = 65
+        
     }
     
-    //End region UIViewController lifecycle callbacks
-    
-    //region overriding UITableViewDataSource methods
+    //region UITableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return itemStore.allItems.count
@@ -50,18 +54,20 @@ class ItemsViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let itemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         
         let item = itemStore.allItems[indexPath.row]
         
-        cell.textLabel?.text = item.name
+        itemCell.nameLabel.text = item.name
+        
+        itemCell.dateCreatedLabel.text = dateToString(item.dateCreated)
         
         if let valueInDollars = item.valueInDollars
         {
-            cell.detailTextLabel?.text = "$\(valueInDollars)"
+            itemCell.valueInDollarsLabel.text = "$\(valueInDollars)"
         }
         
-        return cell
+        return itemCell
     }
     
     //to delete row
@@ -106,4 +112,14 @@ class ItemsViewController: UITableViewController
     }
     
     //End region overriding UITableViewDataSource methods
+    
+    
+    func dateToString(_ date:Date) -> String
+       {
+           let formatter = DateFormatter()
+
+           formatter.dateFormat = "dd-MM-yyyy"
+           
+           return formatter.string(from: date)
+       }
 }
