@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //this is being done in favor of dependency injection
          let itemStore = ItemStore()
          
-         let itemsController = window!.rootViewController as! ItemsViewController
+        let navigationController = window!.rootViewController as! UINavigationController
+        
+        let itemsController = navigationController.topViewController as! ItemsViewController
          
          itemsController.itemStore = itemStore
     }
