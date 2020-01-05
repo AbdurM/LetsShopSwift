@@ -5,6 +5,15 @@ class ItemsViewController: UITableViewController
     //region Injections
     var itemStore: ItemStore!
     
+    //region Formatters
+    //Note to self: We have a duplicate date formatter  in detail view controller. Probably you can write a util class that will enable both of these to share the dateFormatter. Do it after you've implemented the service locator pattern.
+    let dateFormatter: DateFormatter = {
+         let formatter = DateFormatter()
+         formatter.dateStyle = .medium
+         formatter.timeStyle = .none
+         return formatter
+     }()
+    
     //region Actions
     @IBAction func addNewItem(_ sender: UIButton)
     {
@@ -45,6 +54,25 @@ class ItemsViewController: UITableViewController
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        switch segue.identifier
+        {
+        case "showItem"?:
+            if let row = tableView.indexPathForSelectedRow?.row{
+                
+                let item = itemStore.allItems[row]
+                
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+                
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
     //region UITableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -60,11 +88,11 @@ class ItemsViewController: UITableViewController
         
         itemCell.nameLabel.text = item.name
         
-        itemCell.dateCreatedLabel.text = dateToString(item.dateCreated)
+        itemCell.dateCreatedLabel.text = dateFormatter.string(from: item.dateCreated)
         
         if let valueInDollars = item.valueInDollars
         {
-            itemCell.valueInDollarsLabel.text = "$\(valueInDollars)"
+            itemCell.valueInDollarsLabel.text = "\(valueInDollars)"
         }
         
         return itemCell
@@ -113,13 +141,4 @@ class ItemsViewController: UITableViewController
     
     //End region overriding UITableViewDataSource methods
     
-    
-    func dateToString(_ date:Date) -> String
-       {
-           let formatter = DateFormatter()
-
-           formatter.dateFormat = "dd-MM-yyyy"
-           
-           return formatter.string(from: date)
-       }
 }
