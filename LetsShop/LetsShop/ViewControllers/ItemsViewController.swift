@@ -145,6 +145,6 @@ class ItemsViewController: UITableViewController
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
-    //End region overriding UITableViewDataSource methods
+   
     
 }

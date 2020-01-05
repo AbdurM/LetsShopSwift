@@ -125,6 +125,9 @@
                                                 <rect key="frame" x="53" y="0.0" width="361" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="I0p-QJ-IRb" id="dwd-ec-paJ"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -141,6 +144,9 @@
                                                 <rect key="frame" x="53" y="0.0" width="361" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="I0p-QJ-IRb" id="Z8T-6W-7YB"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
