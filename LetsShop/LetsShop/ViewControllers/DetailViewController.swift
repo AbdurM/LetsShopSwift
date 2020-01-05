@@ -30,6 +30,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     
+    // region Actions
+    @IBAction func backgroundTapped(_ sender: Any) {
+        //to make keyboard disappear
+        view.endEditing(true)
+    }
     
     //region view lifecycle
     
@@ -47,6 +52,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        //to make keyboard disappear
+        view.endEditing(true)
         
         item.name = nameField.text ?? ""
         
