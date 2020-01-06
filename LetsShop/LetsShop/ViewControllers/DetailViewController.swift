@@ -4,7 +4,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate
 {
     
     //region properties
-    var item: Item!
+    var item: Item!{
+        didSet{
+            navigationItem.title = item.name
+        }
+    }
     
     //region formatters
     

@@ -15,7 +15,7 @@ class ItemsViewController: UITableViewController
      }()
     
     //region Actions
-    @IBAction func addNewItem(_ sender: UIButton)
+    @IBAction func addNewItem(_ sender: UIBarButtonItem)
     {
         let newItem = itemStore.createItem()
         
@@ -42,6 +42,13 @@ class ItemsViewController: UITableViewController
         }
     }
    
+    //initializers
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
     
     //region view lifecycle
     
