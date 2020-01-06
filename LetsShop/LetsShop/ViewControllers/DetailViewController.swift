@@ -35,7 +35,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
-    
+    @IBOutlet var toolbar: UIToolbar!
     
     // MARK: - Actions
     @IBAction func backgroundTapped(_ sender: Any) {
@@ -61,7 +61,24 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         presentUIImagePicker(sourceType: .photoLibrary)
     }
     
-    //MARK - view life cycle
+    @IBAction func boughtButton(_ sender: UIBarButtonItem) {
+       
+        if !item.bought
+        {
+            toolbar.backgroundColor = UIColor.green.withAlphaComponent(0.75)
+            item.bought = true
+            
+        }
+        else
+        {
+            toolbar.backgroundColor = UIColor.white
+            item.bought = false
+        }
+        
+    }
+    
+    
+    //MARK: - view life cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -77,6 +94,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         if let image = imageStore.image(forKey: item.itemKey)
         {
             imageView.image = image
+        }
+        
+        if item.bought
+        {
+            toolbar.backgroundColor = UIColor.green.withAlphaComponent(0.75)
         }
     }
     

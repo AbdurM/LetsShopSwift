@@ -151,6 +151,11 @@
                                             <action selector="addPhoto:" destination="I0p-QJ-IRb" id="gpw-gs-CIx"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Mark as bought" id="Pmc-5w-eOz">
+                                        <connections>
+                                            <action selector="boughtButton:" destination="I0p-QJ-IRb" id="Wun-hQ-KfB"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -175,6 +180,7 @@
                         <outlet property="dateLabel" destination="CdQ-nA-hwt" id="EzO-5y-ph4"/>
                         <outlet property="imageView" destination="fMm-WH-mbg" id="mUw-R7-8fV"/>
                         <outlet property="nameField" destination="yhS-oL-zwu" id="Fht-Jq-3Yo"/>
+                        <outlet property="toolbar" destination="OLQ-eC-ZpU" id="IAW-zj-dn9"/>
                         <outlet property="valueField" destination="upS-9G-cvA" id="iN9-Qe-uQr"/>
                     </connections>
                 </viewController>

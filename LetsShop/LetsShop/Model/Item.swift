@@ -6,6 +6,7 @@ class Item: NSObject, NSCoding{
     var name: String
     var valueInDollars: Int?
     let dateCreated: Date
+    var bought: Bool
     let itemKey: String
     
     //MARK: - Initialisers
@@ -14,6 +15,7 @@ class Item: NSObject, NSCoding{
         self.name = name
         self.valueInDollars = valueInDollars
         self.dateCreated = Date()
+        self.bought = false
         self.itemKey = UUID().uuidString
         super.init()
     }
@@ -62,6 +64,7 @@ class Item: NSObject, NSCoding{
         coder.encode(name, forKey: "name")
         coder.encode(dateCreated, forKey: "dateCreated")
         coder.encode(itemKey, forKey: "itemKey")
+        coder.encode(bought, forKey:"bought")
         coder.encode(valueInDollars, forKey: "valueInDollars")
     }
     
@@ -70,6 +73,7 @@ class Item: NSObject, NSCoding{
     {
         name = aDecoder.decodeObject(forKey: "name") as! String
         dateCreated = aDecoder.decodeObject(forKey: "dateCreated") as! Date
+        bought = aDecoder.decodeBool(forKey: "bought")
         itemKey = aDecoder.decodeObject(forKey: "itemKey") as! String
         valueInDollars = (aDecoder.decodeObject(forKey: "valueInDollars") as! Int)
         
