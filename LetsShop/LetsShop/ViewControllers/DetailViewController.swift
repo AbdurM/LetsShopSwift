@@ -1,6 +1,6 @@
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate
+class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     
     //region properties
@@ -33,11 +33,31 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var nameField: UITextField!
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
     
     // region Actions
     @IBAction func backgroundTapped(_ sender: Any) {
-        //to make keyboard disappear
-        view.endEditing(true)
+        view.endEditing(true)  //to make keyboard disappear
+    }
+    
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+        
+        // check if camera is available
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            presentUIImagePicker(sourceType: .camera)
+        }
+        else{
+            presentUIImagePicker(sourceType: .photoLibrary)
+        }
+        
+        
+    }
+    
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+        
+        presentUIImagePicker(sourceType: .photoLibrary)
     }
     
     //region view lifecycle
@@ -76,6 +96,18 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+    
+    //End region textField Delegate methods
+    
+    
+    func presentUIImagePicker(sourceType: UIImagePickerController.SourceType)
+    {
+         let imagePicker = UIImagePickerController()
+         imagePicker.sourceType = sourceType
+         imagePicker.delegate = self
+        
+        present(imagePicker, animated: true, completion: nil)
     }
     
 }
