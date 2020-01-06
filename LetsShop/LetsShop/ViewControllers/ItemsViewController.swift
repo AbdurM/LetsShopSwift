@@ -2,10 +2,12 @@ import UIKit
 
 class ItemsViewController: UITableViewController
 {
-    //region Injections
+    //MARK: - Properties
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
     
-    //region Formatters
+    
+    //MARK: - Formatters
     //Note to self: We have a duplicate date formatter  in detail view controller. Probably you can write a util class that will enable both of these to share the dateFormatter. Do it after you've implemented the service locator pattern.
     let dateFormatter: DateFormatter = {
          let formatter = DateFormatter()
@@ -14,7 +16,7 @@ class ItemsViewController: UITableViewController
          return formatter
      }()
     
-    //region Actions
+    //MARK: - Actions
     @IBAction func addNewItem(_ sender: UIBarButtonItem)
     {
         let newItem = itemStore.createItem()
@@ -42,7 +44,7 @@ class ItemsViewController: UITableViewController
         }
     }
    
-    //initializers
+    //MARK: - Initializers
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
@@ -50,7 +52,7 @@ class ItemsViewController: UITableViewController
     }
     
     
-    //region view lifecycle
+    //MARK: - view lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +81,7 @@ class ItemsViewController: UITableViewController
                 
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
+                detailViewController.imageStore = imageStore
                 
             }
         default:
@@ -86,7 +89,7 @@ class ItemsViewController: UITableViewController
         }
     }
     
-    //region UITableViewDataSource methods
+    //MARK: - UITableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return itemStore.allItems.count
@@ -132,7 +135,8 @@ class ItemsViewController: UITableViewController
                 //remove item only after recieving the confirmation from the user
                 (action) -> Void in
                 self.itemStore.removeItem(item)
-                           
+                //remove the item's image from imageStore
+                self.imageStore.deleteImage(forKey: item.itemKey)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 
             }

@@ -3,15 +3,16 @@ import UIKit
 class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     
-    //region properties
+    //MARK: - Properties
     var item: Item!{
         didSet{
             navigationItem.title = item.name
         }
     }
     
-    //region formatters
-    
+    var imageStore: ImageStore!
+   
+    //MARK: - Formatters
     let numberFormatter: NumberFormatter = {
        
         let formatter = NumberFormatter()
@@ -29,14 +30,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }()
 
     
-    // region Outlets
+    // MARK: - Outlets
     @IBOutlet var nameField: UITextField!
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     
     
-    // region Actions
+    // MARK: - Actions
     @IBAction func backgroundTapped(_ sender: Any) {
         view.endEditing(true)  //to make keyboard disappear
     }
@@ -60,7 +61,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         presentUIImagePicker(sourceType: .photoLibrary)
     }
     
-    //region view lifecycle
+    //MARK - view life cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,6 +73,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         valueField.text = numberFormatter.string(from: NSNumber(value: valueInDollars ))
         }
         dateLabel.text = dateFormatter.string(from: item.dateCreated)
+        
+        if let image = imageStore.image(forKey: item.itemKey)
+        {
+            imageView.image = image
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,13 +98,28 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         }
     }
     
-    //region textFieldDelegate methods
+    //MARK: - TextFieldDelegate methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
     
-    //End region textField Delegate methods
+    
+    //MARK: - ImagePicker Controller delegate methods
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // getting picked image from the info dictionary
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        
+        //saving the image in Cache
+        imageStore.setImage(image, forKey: item.itemKey)
+        
+        imageView.image = image
+        
+        //dismissing image picker
+        dismiss(animated: true, completion: nil)
+    }
     
     
     func presentUIImagePicker(sourceType: UIImagePickerController.SourceType)
@@ -109,5 +130,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    
     
 }

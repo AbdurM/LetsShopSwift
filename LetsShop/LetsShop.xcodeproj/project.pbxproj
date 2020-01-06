@@ -19,6 +19,7 @@
 		379151F723BEF3770081774E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151F623BEF3770081774E /* Item.swift */; };
 		379151F923BEF9950081774E /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151F823BEF9950081774E /* ItemStore.swift */; };
 		37BCA8A523C1AFCB00373076 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA8A423C1AFCB00373076 /* DetailViewController.swift */; };
+		37BCA8E123C305CB00373076 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA8E023C305CB00373076 /* ImageStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		379151F623BEF3770081774E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		379151F823BEF9950081774E /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		37BCA8A423C1AFCB00373076 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		37BCA8E023C305CB00373076 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				379151F623BEF3770081774E /* Item.swift */,
+				37BCA8E023C305CB00373076 /* ImageStore.swift */,
 				379151F823BEF9950081774E /* ItemStore.swift */,
 			);
 			path = Model;
@@ -290,6 +293,7 @@
 				379151F723BEF3770081774E /* Item.swift in Sources */,
 				379151F323BEF2120081774E /* ItemsViewController.swift in Sources */,
 				3766F40E23C086CE0073C4FB /* ItemCell.swift in Sources */,
+				37BCA8E123C305CB00373076 /* ImageStore.swift in Sources */,
 				379151C323BEF00E0081774E /* AppDelegate.swift in Sources */,
 				379151F923BEF9950081774E /* ItemStore.swift in Sources */,
 				379151C523BEF00E0081774E /* SceneDelegate.swift in Sources */,

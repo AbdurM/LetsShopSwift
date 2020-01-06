@@ -1,17 +1,20 @@
 import UIKit
 
-class Item: NSObject{
+class Item: NSObject, NSCoding{
+   
+    //MARK: - Properties
     var name: String
     var valueInDollars: Int?
     let dateCreated: Date
+    let itemKey: String
     
-    
+    //MARK: - Initialisers
     init(name: String, valueInDollars: Int?)
     {
         self.name = name
         self.valueInDollars = valueInDollars
         self.dateCreated = Date()
-        
+        self.itemKey = UUID().uuidString
         super.init()
     }
     
@@ -50,6 +53,28 @@ class Item: NSObject{
         }
     }
     
+    
+    //MARK: - For archiving and unarchiving. NSCoding protocol methods
+    
+    //func for archiving
+    func encode(with coder: NSCoder) {
+    
+        coder.encode(name, forKey: "name")
+        coder.encode(dateCreated, forKey: "dateCreated")
+        coder.encode(itemKey, forKey: "itemKey")
+        coder.encode(valueInDollars, forKey: "valueInDollars")
+    }
+    
+    // for unarchiving
+    required init( coder aDecoder: NSCoder)
+    {
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        dateCreated = aDecoder.decodeObject(forKey: "dateCreated") as! Date
+        itemKey = aDecoder.decodeObject(forKey: "itemKey") as! String
+        valueInDollars = (aDecoder.decodeObject(forKey: "valueInDollars") as! Int)
+        
+        super.init()
+    }
     
    
 }
