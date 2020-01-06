@@ -70,8 +70,6 @@ class ItemsViewController: UITableViewController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
         switch segue.identifier
         {
         case "showItem"?:
@@ -88,6 +86,7 @@ class ItemsViewController: UITableViewController
             preconditionFailure("Unexpected segue identifier")
         }
     }
+    
     
     //MARK: - UITableViewDataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,9 +107,17 @@ class ItemsViewController: UITableViewController
         
         if let valueInDollars = item.valueInDollars
         {
-            itemCell.valueInDollarsLabel.text = "\(valueInDollars)"
+            itemCell.valueInDollarsLabel.text = "$\(valueInDollars)"
         }
         
+        if item.bought
+        {
+            itemCell.backgroundColor = UIColor.green.withAlphaComponent(0.10)
+        }
+        else
+        {
+            itemCell.backgroundColor = UIColor.white
+        }
         return itemCell
     }
     

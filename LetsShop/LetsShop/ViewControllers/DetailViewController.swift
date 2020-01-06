@@ -9,9 +9,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
             navigationItem.title = item.name
         }
     }
-    
     var imageStore: ImageStore!
-   
+    
+    
     //MARK: - Formatters
     let numberFormatter: NumberFormatter = {
        
@@ -37,6 +37,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var toolbar: UIToolbar!
     
+    
     // MARK: - Actions
     @IBAction func backgroundTapped(_ sender: Any) {
         view.endEditing(true)  //to make keyboard disappear
@@ -52,8 +53,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         else{
             presentUIImagePicker(sourceType: .photoLibrary)
         }
-        
-        
     }
     
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
@@ -67,7 +66,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         {
             toolbar.backgroundColor = UIColor.green.withAlphaComponent(0.75)
             item.bought = true
-            
         }
         else
         {
