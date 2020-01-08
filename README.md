@@ -1,5 +1,5 @@
 •	Stage -1 (Current):
-*	Create your a shopping list and mark items as bought 
+*	Create a shopping list and mark items as bought 
 * Show details of the items.
 * Allow adding images from camera or photos app
 * Create multiple shopping lists.
