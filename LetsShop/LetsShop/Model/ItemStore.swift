@@ -35,9 +35,6 @@ class ItemStore {
             //encoding into data representation
             let data = try NSKeyedArchiver.archivedData(withRootObject: allItems, requiringSecureCoding: false)
             
-            
-            print("Saving to \(itemArchiveURL.path)")//for debugging
-            
             try data.write(to: itemArchiveURL)
             
             return true
