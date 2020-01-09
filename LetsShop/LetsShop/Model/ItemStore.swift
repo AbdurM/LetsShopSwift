@@ -22,48 +22,34 @@ class ItemStore {
     }()
     
     
-    
-    //MARK: - Archiving and unarchiving
-    
-    //url of the archive file where all the instances of item are/can be saved
-       var itemArchiveURL: URL = {
-          
-           let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-           
-           let documentDirectory = documentDirectories.first!
-           
-           return documentDirectory.appendingPathComponent("items.archive")
-           
-       }()
-    
     init()
        {
-        // get the archived item array
-           let archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Item]
-           
-           if let itemArray = archivedItems{
-               allItems = itemArray
-           }
+        
+        //fetch previosly saved items from NSManagedObjectContext
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        //sort description to fetch items according to dateCreated in ascending order
+        let sortByDateCreated = NSSortDescriptor(key: #keyPath(Item.dateCreated), ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortByDateCreated]
+        
+        let viewContext = persistentContainer.viewContext
+        
+        viewContext.performAndWait {
+            do
+            {
+                let prevStoredItems = try viewContext.fetch(fetchRequest)
+                self.allItems = prevStoredItems
+            }
+            catch
+            {
+                print("Loading old items failed due to error: \(error)")
+            }
+            
+        }
            
        }
-    //archiving
-    func saveChanges() -> Bool{
-        do{
-            //note: NSKeyedArchiver is the concrete implementation of NSCoder which is used to encode the item objects
-            
-            //encoding into data representation
-            let data = try NSKeyedArchiver.archivedData(withRootObject: allItems, requiringSecureCoding: false)
-            
-            try data.write(to: itemArchiveURL)
-            
-            return true
-        }
-        catch{
-            print("Archiving items failed due to \(error)")
-            return false
-        }
-    }
-    
+   
     //MARK: - Item creation, deletion and move
     
     //@discardableResult annotation means that the caller of this function is free to ignore the result of calling this function
@@ -72,6 +58,8 @@ class ItemStore {
         //creating random item using the initialiser declared in item class.
         //In future this func will recieve details such as item name, value in dollars(optional)
         let newItem = createItem(into: persistentContainer.viewContext)
+
+        saveChangesToViewContext()
         
         allItems.append(newItem)
         
@@ -84,7 +72,9 @@ class ItemStore {
     {
         if let index = allItems.firstIndex(of: item)
         {
+            persistentContainer.viewContext.delete(item)
             allItems.remove(at: index)
+            
         }
     }
     
@@ -139,6 +129,16 @@ class ItemStore {
            return item
        }
     
-    
+    func saveChangesToViewContext()
+    {
+          do
+          {
+              try persistentContainer.viewContext.save()
+          }
+          catch
+          {
+              print("Saving to context failed due to error: \(error)")
+          }
+     }
    
 }

@@ -47,15 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
-       let success = itemStore.saveChanges()
-             
-         if success{
-             print("All items successfully saved ")
-         }
-         else
-         {
-             print("Could not save any of the items")
-         }
+        itemStore.saveChangesToViewContext()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
