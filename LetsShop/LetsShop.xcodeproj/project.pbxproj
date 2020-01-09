@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37249D7E23C6FFFD0077B381 /* Letsshop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37249D7C23C6FFFD0077B381 /* Letsshop.xcdatamodeld */; };
+		37249D8523C700D30077B381 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37249D8323C700D30077B381 /* Item+CoreDataClass.swift */; };
+		37249D8623C700D30077B381 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37249D8423C700D30077B381 /* Item+CoreDataProperties.swift */; };
 		3766F40E23C086CE0073C4FB /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3766F40D23C086CE0073C4FB /* ItemCell.swift */; };
 		379151C323BEF00E0081774E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151C223BEF00E0081774E /* AppDelegate.swift */; };
 		379151C523BEF00E0081774E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151C423BEF00E0081774E /* SceneDelegate.swift */; };
@@ -16,7 +19,6 @@
 		379151DA23BEF0110081774E /* LetsShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151D923BEF0100081774E /* LetsShopTests.swift */; };
 		379151E523BEF0110081774E /* LetsShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151E423BEF0110081774E /* LetsShopUITests.swift */; };
 		379151F323BEF2120081774E /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151F223BEF2120081774E /* ItemsViewController.swift */; };
-		379151F723BEF3770081774E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151F623BEF3770081774E /* Item.swift */; };
 		379151F923BEF9950081774E /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151F823BEF9950081774E /* ItemStore.swift */; };
 		37BCA8A523C1AFCB00373076 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA8A423C1AFCB00373076 /* DetailViewController.swift */; };
 		37BCA8E123C305CB00373076 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA8E023C305CB00373076 /* ImageStore.swift */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37249D7D23C6FFFD0077B381 /* Letsshop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Letsshop.xcdatamodel; sourceTree = "<group>"; };
+		37249D8323C700D30077B381 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		37249D8423C700D30077B381 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3766F40D23C086CE0073C4FB /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		379151BF23BEF00E0081774E /* LetsShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		379151C223BEF00E0081774E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		379151E423BEF0110081774E /* LetsShopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsShopUITests.swift; sourceTree = "<group>"; };
 		379151E623BEF0110081774E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379151F223BEF2120081774E /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
-		379151F623BEF3770081774E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		379151F823BEF9950081774E /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		37BCA8A423C1AFCB00373076 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		37BCA8E023C305CB00373076 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
@@ -106,6 +110,9 @@
 		379151B623BEF00E0081774E = {
 			isa = PBXGroup;
 			children = (
+				37249D8323C700D30077B381 /* Item+CoreDataClass.swift */,
+				37249D8423C700D30077B381 /* Item+CoreDataProperties.swift */,
+				37249D7C23C6FFFD0077B381 /* Letsshop.xcdatamodeld */,
 				379151C123BEF00E0081774E /* LetsShop */,
 				379151D823BEF0100081774E /* LetsShopTests */,
 				379151E323BEF0110081774E /* LetsShopUITests */,
@@ -168,7 +175,6 @@
 		379151F523BEF3620081774E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				379151F623BEF3770081774E /* Item.swift */,
 				37BCA8E023C305CB00373076 /* ImageStore.swift */,
 				379151F823BEF9950081774E /* ItemStore.swift */,
 			);
@@ -306,9 +312,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				379151F723BEF3770081774E /* Item.swift in Sources */,
 				379151F323BEF2120081774E /* ItemsViewController.swift in Sources */,
+				37249D7E23C6FFFD0077B381 /* Letsshop.xcdatamodeld in Sources */,
 				3766F40E23C086CE0073C4FB /* ItemCell.swift in Sources */,
+				37249D8523C700D30077B381 /* Item+CoreDataClass.swift in Sources */,
+				37249D8623C700D30077B381 /* Item+CoreDataProperties.swift in Sources */,
 				37BCA8E123C305CB00373076 /* ImageStore.swift in Sources */,
 				379151C323BEF00E0081774E /* AppDelegate.swift in Sources */,
 				379151F923BEF9950081774E /* ItemStore.swift in Sources */,
@@ -636,6 +644,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37249D7C23C6FFFD0077B381 /* Letsshop.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37249D7D23C6FFFD0077B381 /* Letsshop.xcdatamodel */,
+			);
+			currentVersion = 37249D7D23C6FFFD0077B381 /* Letsshop.xcdatamodel */;
+			path = Letsshop.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 379151B723BEF00E0081774E /* Project object */;
 }

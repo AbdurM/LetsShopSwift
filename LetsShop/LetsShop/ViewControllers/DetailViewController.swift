@@ -83,13 +83,18 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         nameField.text = item.name
         
-        if let valueInDollars = item.valueInDollars
-        {
-        valueField.text = numberFormatter.string(from: NSNumber(value: valueInDollars ))
-        }
-        dateLabel.text = dateFormatter.string(from: item.dateCreated)
+        valueField.text = numberFormatter.string(from: NSNumber(value: item.valueInDollars ))
         
-        if let image = imageStore.image(forKey: item.itemKey)
+        guard let dateCreated = item.dateCreated else{
+            preconditionFailure("Item is expected to have a dateCreated")
+        }
+        dateLabel.text = dateFormatter.string(from: dateCreated)
+        
+        guard let itemKey = item.itemKey else {
+            preconditionFailure("Item is expected to have an itemKey")
+        }
+        
+        if let image = imageStore.image(forKey: itemKey)
         {
             imageView.image = image
         }
@@ -110,7 +115,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         if let valueText = valueField.text, let value = numberFormatter.number(from: valueText)
         {
-            item.valueInDollars = value.intValue
+            item.valueInDollars = value.doubleValue
         }
         else
         {
@@ -133,7 +138,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         //saving the image in Cache
-        imageStore.setImage(image, forKey: item.itemKey)
+        guard let itemKey = item.itemKey else {
+            preconditionFailure("Item must have an itemKey")
+        }
+        imageStore.setImage(image, forKey: itemKey)
         
         imageView.image = image
         

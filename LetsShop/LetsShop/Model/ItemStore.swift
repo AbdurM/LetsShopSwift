@@ -1,8 +1,27 @@
 import UIKit
+import CoreData
 
 class ItemStore {
     
+    //MARK: -Properties
     var allItems = [Item]()
+    
+    let persistentContainer: NSPersistentContainer = {
+        
+        let container = NSPersistentContainer(name: "Letsshop")
+        
+        container.loadPersistentStores{
+            (description, error) in
+            
+            if let error = error {
+                print("Error setting up core data: \(error)")
+            }
+        }
+        
+        return container
+    }()
+    
+    
     
     //MARK: - Archiving and unarchiving
     
@@ -52,7 +71,7 @@ class ItemStore {
     {
         //creating random item using the initialiser declared in item class.
         //In future this func will recieve details such as item name, value in dollars(optional)
-        let newItem = Item(random: true)
+        let newItem = createItem(into: persistentContainer.viewContext)
         
         allItems.append(newItem)
         
@@ -84,7 +103,41 @@ class ItemStore {
         allItems.insert(movedItem, at: toIndex)
     }
     
-    
+    func createItem(into context: NSManagedObjectContext) -> Item
+       {
+       //right now creates random items without any help from the user.
+           let adjectives = ["Fresh", "Nice", "New"]
+           
+           let nouns = ["Milk","Bread", "Juice"]
+           
+           var idx = arc4random_uniform(UInt32(adjectives.count))
+           
+           let randomAdjective = adjectives[Int(idx)]
+           
+           idx = arc4random_uniform(UInt32(nouns.count))
+           
+           let randomNoun = nouns[Int(idx)]
+           
+           let randomName = "\(randomAdjective) \(randomNoun)"
+           
+           let randomValue = Double(arc4random_uniform(100))
+           
+           let dateCreated = Date()
+
+           var item: Item!
+           
+           context.performAndWait {
+               
+               item = Item(context: context)
+               item.name = randomName
+               item.valueInDollars = randomValue
+               item.dateCreated = dateCreated
+               item.itemKey = UUID().uuidString
+               item.bought = false
+           }
+           
+           return item
+       }
     
     
    

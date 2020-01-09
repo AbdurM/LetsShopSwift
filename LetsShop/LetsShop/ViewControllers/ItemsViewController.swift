@@ -103,12 +103,14 @@ class ItemsViewController: UITableViewController
         
         itemCell.nameLabel.text = item.name
         
-        itemCell.dateCreatedLabel.text = dateFormatter.string(from: item.dateCreated)
-        
-        if let valueInDollars = item.valueInDollars
-        {
-            itemCell.valueInDollarsLabel.text = "$\(valueInDollars)"
+        guard let dateCreated = item.dateCreated else {
+            preconditionFailure("Item is expected to have a dateCreated")
         }
+        
+        itemCell.dateCreatedLabel.text = dateFormatter.string(from: dateCreated)
+        
+        itemCell.valueInDollarsLabel.text = "$\(item.valueInDollars)"
+        
         
         if item.bought
         {
@@ -143,7 +145,11 @@ class ItemsViewController: UITableViewController
                 (action) -> Void in
                 self.itemStore.removeItem(item)
                 //remove the item's image from imageStore
-                self.imageStore.deleteImage(forKey: item.itemKey)
+                
+                guard let itemKey = item.itemKey else {
+                    preconditionFailure("Item must have an item key")
+                }
+                self.imageStore.deleteImage(forKey: itemKey)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 
             }
