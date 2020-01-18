@@ -10,6 +10,9 @@
 		37249D7E23C6FFFD0077B381 /* Letsshop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37249D7C23C6FFFD0077B381 /* Letsshop.xcdatamodeld */; };
 		37249D8523C700D30077B381 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37249D8323C700D30077B381 /* Item+CoreDataClass.swift */; };
 		37249D8623C700D30077B381 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37249D8423C700D30077B381 /* Item+CoreDataProperties.swift */; };
+		37330B2423D21E140090688A /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37330B2323D21E140090688A /* TagsViewController.swift */; };
+		37330B2923D220760090688A /* TagDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37330B2823D220760090688A /* TagDataSource.swift */; };
+		37330B2C23D221C00090688A /* TagsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37330B2B23D221C00090688A /* TagsResult.swift */; };
 		3766F40E23C086CE0073C4FB /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3766F40D23C086CE0073C4FB /* ItemCell.swift */; };
 		379151C323BEF00E0081774E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151C223BEF00E0081774E /* AppDelegate.swift */; };
 		379151C523BEF00E0081774E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379151C423BEF00E0081774E /* SceneDelegate.swift */; };
@@ -45,6 +48,9 @@
 		37249D7D23C6FFFD0077B381 /* Letsshop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Letsshop.xcdatamodel; sourceTree = "<group>"; };
 		37249D8323C700D30077B381 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		37249D8423C700D30077B381 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37330B2323D21E140090688A /* TagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
+		37330B2823D220760090688A /* TagDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataSource.swift; sourceTree = "<group>"; };
+		37330B2B23D221C00090688A /* TagsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResult.swift; sourceTree = "<group>"; };
 		3766F40D23C086CE0073C4FB /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		379151BF23BEF00E0081774E /* LetsShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		379151C223BEF00E0081774E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +96,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37330B2723D220580090688A /* TableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				37330B2823D220760090688A /* TagDataSource.swift */,
+			);
+			path = TableDataSource;
+			sourceTree = "<group>";
+		};
+		37330B2A23D221AB0090688A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				37330B2B23D221C00090688A /* TagsResult.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		3734B3A223C3B76D00B0BE6B /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +155,8 @@
 		379151C123BEF00E0081774E /* LetsShop */ = {
 			isa = PBXGroup;
 			children = (
+				37330B2A23D221AB0090688A /* Enums */,
+				37330B2723D220580090688A /* TableDataSource */,
 				3734B3A323C3B7D300B0BE6B /* Storyboards */,
 				379151F523BEF3620081774E /* Model */,
 				379151F423BEF3530081774E /* ViewControllers */,
@@ -168,6 +192,7 @@
 			children = (
 				379151F223BEF2120081774E /* ItemsViewController.swift */,
 				37BCA8A423C1AFCB00373076 /* DetailViewController.swift */,
+				37330B2323D21E140090688A /* TagsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -313,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				379151F323BEF2120081774E /* ItemsViewController.swift in Sources */,
+				37330B2923D220760090688A /* TagDataSource.swift in Sources */,
 				37249D7E23C6FFFD0077B381 /* Letsshop.xcdatamodeld in Sources */,
 				3766F40E23C086CE0073C4FB /* ItemCell.swift in Sources */,
 				37249D8523C700D30077B381 /* Item+CoreDataClass.swift in Sources */,
@@ -321,7 +347,9 @@
 				379151C323BEF00E0081774E /* AppDelegate.swift in Sources */,
 				379151F923BEF9950081774E /* ItemStore.swift in Sources */,
 				379151C523BEF00E0081774E /* SceneDelegate.swift in Sources */,
+				37330B2423D21E140090688A /* TagsViewController.swift in Sources */,
 				37BCA8A523C1AFCB00373076 /* DetailViewController.swift in Sources */,
+				37330B2C23D221C00090688A /* TagsResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

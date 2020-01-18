@@ -156,6 +156,7 @@
                                             <action selector="boughtButton:" destination="I0p-QJ-IRb" id="Wun-hQ-KfB"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Tags" id="Cdc-RU-zaf"/>
                                 </items>
                             </toolbar>
                         </subviews>
