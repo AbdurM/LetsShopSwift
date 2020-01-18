@@ -97,28 +97,30 @@ class ItemsViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let itemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
-        
         let item = itemStore.allItems[indexPath.row]
         
-        itemCell.nameLabel.text = item.name
+        let itemCell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         
-        itemCell.dateCreatedLabel.text = dateFormatter.string(from: item.dateCreated)
+        let itemName = item.name
         
-        if let valueInDollars = item.valueInDollars
-        {
-            itemCell.valueInDollarsLabel.text = "$\(valueInDollars)"
-        }
+        let dateCreatedString = dateFormatter.string(from: item.dateCreated)
         
-        if item.bought
-        {
-            itemCell.backgroundColor = UIColor.green.withAlphaComponent(0.10)
-        }
-        else
-        {
-            itemCell.backgroundColor = UIColor.white
-        }
-        return itemCell
+        let valueInDollarsString = {
+          
+            () -> String? in
+            
+            guard let valueInDollars = item.valueInDollars else
+            {
+                return ""
+            }
+            return "$\(valueInDollars)"
+        }()
+        
+        let itemBought = item.bought
+            
+        itemCell.setup(name: itemName, valueInDollars: valueInDollarsString!, dateCreated: dateCreatedString, itemBought: itemBought)
+        
+         return itemCell
     }
     
     //to delete row
